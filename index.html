@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>NiklasCards</title>
 
 <style>
@@ -11,7 +10,7 @@ body{
     margin:0;
     background:#1b1b1b;
     color:white;
-    font-family:Arial, sans-serif;
+    font-family:Arial,sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -19,34 +18,31 @@ body{
 }
 
 .container{
-    text-align:center;
-    max-width:600px;
     width:90%;
+    max-width:600px;
+    text-align:center;
 }
 
 h1{
-    font-size:32px;
     margin-bottom:10px;
 }
 
 h2{
-    font-size:28px;
-    margin-bottom:25px;
+    margin-bottom:20px;
 }
 
 img{
     width:100%;
     border-radius:15px;
-    display:none;
 }
 
 .footer{
-    margin-top:25px;
-    font-size:18px;
+    margin-top:20px;
 }
 </style>
 
 </head>
+
 <body>
 
 <div class="container">
@@ -55,7 +51,7 @@ img{
 
 <h2>❓ Who's That Pokémon? ❓</h2>
 
-<img id="pokemon" alt="Who's That Pokémon?">
+<img src="bilder/001.png" alt="Who's That Pokémon?">
 
 <div class="footer">
 Viel Spaß beim Sammeln ❤️<br><br>
@@ -63,34 +59,6 @@ Viel Spaß beim Sammeln ❤️<br><br>
 </div>
 
 </div>
-
-<script>
-const id = new URLSearchParams(window.location.search).get("id") || "001";
-
-const extensions = ["jpg","jpeg","png","webp"];
-const img = document.getElementById("pokemon");
-
-let i = 0;
-
-function tryImage(){
-    if(i >= extensions.length){
-        return;
-    }
-
-    img.src = "bilder/" + id + "." + extensions[i];
-
-    img.onload = () => {
-        img.style.display = "block";
-    };
-
-    img.onerror = () => {
-        i++;
-        tryImage();
-    };
-}
-
-tryImage();
-</script>
 
 </body>
 </html>
