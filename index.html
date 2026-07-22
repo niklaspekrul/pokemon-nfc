@@ -7,66 +7,55 @@
 <title>NiklasCards</title>
 
 <style>
-
 body{
     margin:0;
-    padding:20px;
-    background:#0f172a;
-    font-family:Arial, Helvetica, sans-serif;
+    background:#1b1b1b;
     color:white;
+    font-family:Arial, sans-serif;
     display:flex;
     justify-content:center;
     align-items:center;
     min-height:100vh;
 }
 
-.card{
-    background:#1e293b;
-    max-width:650px;
-    width:100%;
-    padding:30px;
-    border-radius:20px;
+.container{
     text-align:center;
-    box-shadow:0 0 25px rgba(0,0,0,.5);
+    max-width:600px;
+    width:90%;
 }
 
 h1{
-    color:#FFD700;
+    font-size:32px;
     margin-bottom:10px;
 }
 
 h2{
-    color:#ffcb05;
-    font-size:36px;
-    text-shadow:3px 3px #2a75bb;
-    margin-top:10px;
+    font-size:28px;
     margin-bottom:25px;
 }
 
 img{
     width:100%;
     border-radius:15px;
+    display:none;
 }
 
 .footer{
     margin-top:25px;
     font-size:18px;
-    color:#ddd;
 }
-
 </style>
 
 </head>
-
 <body>
 
-<div class="card">
+<div class="container">
 
 <h1>🎁 Danke für deine Bestellung!</h1>
 
 <h2>❓ Who's That Pokémon? ❓</h2>
 
-<img id="pokemon" src="" alt="Who's That Pokémon?">
+<img id="pokemon" alt="Who's That Pokémon?">
 
 <div class="footer">
 Viel Spaß beim Sammeln ❤️<br><br>
@@ -76,21 +65,31 @@ Viel Spaß beim Sammeln ❤️<br><br>
 </div>
 
 <script>
+const id = new URLSearchParams(window.location.search).get("id") || "001";
 
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id") || "001";
-
+const extensions = ["jpg","jpeg","png","webp"];
 const img = document.getElementById("pokemon");
 
-// Erst JPG versuchen
-img.src = "bilder/" + id + ".jpg";
+let i = 0;
 
-// Falls JPG nicht existiert -> PNG versuchen
-img.onerror = function () {
-    img.onerror = null;
-    img.src = "bilder/" + id + ".png";
-};
+function tryImage(){
+    if(i >= extensions.length){
+        return;
+    }
 
+    img.src = "bilder/" + id + "." + extensions[i];
+
+    img.onload = () => {
+        img.style.display = "block";
+    };
+
+    img.onerror = () => {
+        i++;
+        tryImage();
+    };
+}
+
+tryImage();
 </script>
 
 </body>
