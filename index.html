@@ -54,7 +54,7 @@ img{
 
 <h2>❓ Who's That Pokémon? ❓</h2>
 
-<img src="bilder/001.png" alt="Who's That Pokémon?">
+<img id="pokemon" alt="Who's That Pokémon?">
 
 <div class="footer">
 Viel Spaß beim Sammeln! ❤️<br><br>
@@ -63,6 +63,13 @@ Viel Spaß beim Sammeln! ❤️<br><br>
 </div>
 
 </div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id") || "001";
+
+document.getElementById("pokemon").src = "bilder/" + id + ".png";
+</script>
 
 </body>
 </html>
