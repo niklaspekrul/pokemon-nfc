@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NiklasCards Überraschung</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body{
-            margin:0;
-            background:#0f172a;
-            font-family:Arial, Helvetica, sans-serif;
-            color:white;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            min-height:100vh;
-        }
+<title>NiklasCards</title>
 
-        .box{
-            width:90%;
-            max-width:600px;
-            background:#1e293b;
-            padding:30px;
-            border-radius:20px;
-            text-align:center;
-            box-shadow:0 0 30px rgba(0,0,0,.4);
-        }
+<style>
 
-        h1{
-            color:#FFD700;
-            margin-top:0;
-        }
+body{
+    margin:0;
+    padding:20px;
+    background:#0f172a;
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
 
-        img{
-            width:100%;
-            border-radius:15px;
-            margin:20px 0;
-        }
+.card{
+    background:#1e293b;
+    max-width:650px;
+    width:100%;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 25px rgba(0,0,0,.5);
+}
 
-        p{
-            font-size:18px;
-        }
-    </style>
+h1{
+    color:#FFD700;
+    margin-bottom:10px;
+}
+
+h2{
+    color:#ffcb05;
+    font-size:36px;
+    text-shadow:3px 3px #2a75bb;
+    margin-top:10px;
+    margin-bottom:25px;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+}
+
+.footer{
+    margin-top:25px;
+    font-size:18px;
+    color:#ddd;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<div class="box">
+<div class="card">
 
 <h1>🎁 Danke für deine Bestellung!</h1>
 
-<p>Who's That Pokémon?</p>
+<h2>❓ Who's That Pokémon? ❓</h2>
 
-<img id="pokemon" src="" alt="Pokémon Karte">
+<img id="pokemon" src="" alt="Who's That Pokémon?">
 
-<p>Viel Spaß beim Sammeln! ❤️</p>
+<div class="footer">
+Viel Spaß beim Sammeln ❤️<br><br>
+<b>NiklasCards</b>
+</div>
 
 </div>
 
@@ -65,14 +82,14 @@ const id = params.get("id") || "001";
 
 const img = document.getElementById("pokemon");
 
-img.onerror = function () {
+// Erst JPG versuchen
+img.src = "bilder/" + id + ".jpg";
 
+// Falls JPG nicht existiert -> PNG versuchen
+img.onerror = function () {
     img.onerror = null;
     img.src = "bilder/" + id + ".png";
-
 };
-
-img.src = "bilder/" + id + ".jpg";
 
 </script>
 
